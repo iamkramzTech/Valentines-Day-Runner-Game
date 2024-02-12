@@ -36,6 +36,7 @@
             Heart = new PictureBox();
             HeartBroken = new PictureBox();
             GameTimer = new System.Windows.Forms.Timer(components);
+            lblScore = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)Ground).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Mario).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Obstacle1).BeginInit();
@@ -59,7 +60,7 @@
             // 
             Mario.BackColor = SystemColors.Control;
             Mario.Image = Properties.Resources.mario_run;
-            Mario.Location = new Point(13, 653);
+            Mario.Location = new Point(5, 653);
             Mario.Name = "Mario";
             Mario.Size = new Size(44, 60);
             Mario.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -69,7 +70,7 @@
             // Obstacle1
             // 
             Obstacle1.Image = Properties.Resources.obstacle_1;
-            Obstacle1.Location = new Point(740, 667);
+            Obstacle1.Location = new Point(411, 666);
             Obstacle1.Name = "Obstacle1";
             Obstacle1.Size = new Size(23, 46);
             Obstacle1.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -80,7 +81,7 @@
             // Obstacle2
             // 
             Obstacle2.Image = Properties.Resources.obstacle_2;
-            Obstacle2.Location = new Point(1056, 663);
+            Obstacle2.Location = new Point(1058, 663);
             Obstacle2.Name = "Obstacle2";
             Obstacle2.Size = new Size(50, 50);
             Obstacle2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -92,18 +93,18 @@
             // 
             Heart.BackColor = Color.Transparent;
             Heart.Image = Properties.Resources.heart_resized;
-            Heart.Location = new Point(867, 634);
+            Heart.Location = new Point(797, 677);
             Heart.Name = "Heart";
             Heart.Size = new Size(32, 33);
             Heart.SizeMode = PictureBoxSizeMode.AutoSize;
             Heart.TabIndex = 4;
             Heart.TabStop = false;
-            Heart.Tag = "obstacle";
+            Heart.Tag = "heart";
             // 
             // HeartBroken
             // 
             HeartBroken.Image = Properties.Resources.broken_heart_resized;
-            HeartBroken.Location = new Point(1173, 677);
+            HeartBroken.Location = new Point(674, 680);
             HeartBroken.Name = "HeartBroken";
             HeartBroken.Size = new Size(32, 33);
             HeartBroken.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -115,16 +116,30 @@
             // 
             GameTimer.Tick += GameTimer_Tick;
             // 
+            // lblScore
+            // 
+            lblScore.AutoSize = true;
+            lblScore.Depth = 0;
+            lblScore.Font = new Font("Roboto", 24F, FontStyle.Bold, GraphicsUnit.Pixel);
+            lblScore.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            lblScore.Location = new Point(938, 87);
+            lblScore.MouseState = MaterialSkin.MouseState.HOVER;
+            lblScore.Name = "lblScore";
+            lblScore.Size = new Size(69, 29);
+            lblScore.TabIndex = 6;
+            lblScore.Text = "Score:";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1222, 748);
+            Controls.Add(lblScore);
+            Controls.Add(Obstacle1);
             Controls.Add(HeartBroken);
             Controls.Add(Heart);
             Controls.Add(Mario);
             Controls.Add(Obstacle2);
-            Controls.Add(Obstacle1);
             Controls.Add(Ground);
             Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
@@ -151,5 +166,6 @@
         private PictureBox Heart;
         private PictureBox HeartBroken;
         private System.Windows.Forms.Timer GameTimer;
+        private MaterialSkin.Controls.MaterialLabel lblScore;
     }
 }
