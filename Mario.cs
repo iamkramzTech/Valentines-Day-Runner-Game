@@ -2,6 +2,9 @@
 {
     public class Mario : Character
     {
+        private const int _MaxJumpDuration = 1; // Maximum duration of the jump
+        private int _jumpDuration; // Duration of the current jump
+        private SoundEffects _jumpingSound = new JumpSoundEffects();
         /// <summary>
         /// Create an Instance of Mario Character Inherited from base Class Character, and ICharacter
         /// </summary>
@@ -19,17 +22,24 @@
         /// <param name="groundLevel">int ground level of a character</param>
         public override void Update(bool isJumping, int groundLevel)
         {
-            if(isJumping)
+            if(isJumping && _jumpDuration < _MaxJumpDuration)
             {
-                Velocity = -10;
+               // Velocity = -40;
+                Jump();
+                _jumpDuration++;
             }
+            else
             Velocity += Gravity;
+
+            // Update the position of the character
             CharacterPictureBox.Top += Velocity;
 
-            if(CharacterPictureBox.Top >=groundLevel)
+            // Check if the character has landed
+            if (CharacterPictureBox.Top >= groundLevel)
             {
                 CharacterPictureBox.Top = groundLevel;
                 Velocity = 0;
+                _jumpDuration = 0; // Reset the jump duration when the character lands
             }
         }
 
@@ -38,7 +48,8 @@
         /// </summary>
         public override void Jump()
         {
-            Velocity = -30;
+            Velocity = -40;
+            _jumpingSound.PlaySound();
         }
     }
 }
