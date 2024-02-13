@@ -23,13 +23,18 @@ namespace ValentinesDay
         //private int _obstacleSpeed = 20;
         Random random = new Random();
 
+
+        //Sound Effects Field
+        private SoundEffects _runningSound = new RunningSoundEffects();
+        private SoundEffects _diedSound = new DeadSoundEffects();
+        
         public Form1()
         {
             InitializeComponent();
 
             InitializeColorScheme();
-
             InitializeGame();
+
 
             //ResetGame();
         }
@@ -63,6 +68,7 @@ namespace ValentinesDay
             GameTimer.Interval = 20;
             GameTimer.Tick += GameTimer_Tick;
             GameTimer.Start();
+            _runningSound.PlaySound();
         }
         /// <summary>
         /// This method is triggered on each tick of the game timer.
@@ -80,6 +86,7 @@ namespace ValentinesDay
                 _isJumping = false;
             }
             _mario.Update(_isJumping, _groundLevel);
+            
 
             foreach (Control control in this.Controls)
             {
@@ -90,8 +97,11 @@ namespace ValentinesDay
                         UpdateControl(control, () =>
                         {
                             GameTimer.Stop();
+                            _runningSound.StopSound();
+                            _diedSound.PlaySound();
                             _mario.CharacterPictureBox.Image = Properties.Resources.mario_steady;
                             _isGameOver = true;
+
                         });
                     }
                     else if ((string)control.Tag == "heart")
@@ -173,6 +183,8 @@ namespace ValentinesDay
                 }
             }
             GameTimer.Start();
+            _diedSound.StopSound();
+            _runningSound.PlaySound();
         }
 
         /// <summary>
