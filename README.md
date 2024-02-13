@@ -4,4 +4,4 @@ Endless Runner Game Collecting Heart. Based on T-Rex Dino Game, but Mario Charac
 # ScreenShot
 
 MainGame Form
-![alt text](https://github.com/iamKramzTech/ValentinesDayGameRunner/blob/master/screenshots/image.jpg?raw=true)
+![alt text](https://github.com/iamkramzTech/Valentines-Day-Runner-Game/blob/master/screenshots/game-form-screenshot.png?raw=true)
